@@ -221,7 +221,7 @@ def check_cls(message, lst):
                 con.commit()
                 start_message(message)
     if not clas_check_passed:
-        ask_class = our_bot.send_message(message.chat.id, "Неверный формат ввода пароля, попробуй-ка ещё разок")
+        ask_class = our_bot.send_message(message.chat.id, "Неверный формат ввода класса, попробуй-ка ещё разок")
         our_bot.register_next_step_handler(ask_class, check_cls, a)
 
 
