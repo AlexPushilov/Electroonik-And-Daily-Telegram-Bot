@@ -95,7 +95,7 @@ def daily_answer(message):
         date = week_days[dt.weekday()]
         time2 = datetime.datetime.now(timezone("Europe/Moscow")).time()
         k = datetime.time(0, 0)
-        our_bot.send_message(message.chat.id, f"Текущее время {time2}")
+        our_bot.send_message(message.chat.id, f"Текущее время и дата: {time2}, {dt.weekday()}")
         if date == "now_sunday":
             our_bot.send_message(message.chat.id, "Сегодня можно отдохнуть")
         if time2 < timetable["lesson_1"][0]:
