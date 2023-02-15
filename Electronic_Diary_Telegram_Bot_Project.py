@@ -93,6 +93,7 @@ def daily_answer(message):
     if message.text == "Текущий и следующий урок":
         dt = datetime.datetime.now(timezone("Europe/Moscow"))
         date = week_days[dt.weekday()]
+        print(dt)
         time2 = datetime.datetime.now(timezone("Europe/Moscow")).time()
         k = datetime.time(0, 0)
         if date == "now_sunday":
