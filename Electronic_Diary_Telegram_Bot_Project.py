@@ -216,7 +216,7 @@ def check_cls(message, lst):
             if cls.split()[1] in rus_list:
                 clas_check_passed = True
                 lst.append(cls)
-                cur.execute(f"""INSERT INTO info VALUES ({list[0]}, '{list[1]}', '{list[2]}', '{list[3]}')""")
+                cur.execute(f"""INSERT INTO info VALUES ({lst[0]}, '{lst[1]}', '{lst[2]}', '{lst[3]}')""")
                 con.commit()
                 start_message(message)
     if not clas_check_passed:
