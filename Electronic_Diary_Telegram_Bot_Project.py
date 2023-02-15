@@ -127,7 +127,7 @@ def daily_answer(message):
                     our_bot.send_message(message.chat.id, f"Следующий урок - {next_lesson}")
                 k = j[1]
         else:
-            for i, j in alt_timetable.items():
+            for i, j in timetable.items():
                 if time2 > j[0] and time2 < j[1]:
                     our_bot.send_message(message.chat.id, f'Ваш класс: {cls_nbr}')
                     if i != 'lesson_8':
