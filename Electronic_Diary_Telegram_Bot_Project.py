@@ -74,7 +74,6 @@ def start_message(message):
     reg_passed = False
     us_id = message.from_user.id
     our_bot.send_message(message.chat.id, us_id)
-    our_bot.send_message(message.chat.id, result)
     for i in result:
         our_bot.send_message(message.chat.id, f"Проверяемый ID {i[0]}")
         if i[0] == us_id:
