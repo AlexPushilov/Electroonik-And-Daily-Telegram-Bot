@@ -219,6 +219,7 @@ def check_cls(message, lst):
                 lst.append(cls)
                 cur.execute(f"""INSERT INTO info VALUES ({lst[0]}, '{lst[1]}', '{lst[2]}', '{lst[3]}')""")
                 con.commit()
+                lst = []
                 start_message(message)
     if not clas_check_passed:
         ask_class = our_bot.send_message(message.chat.id, "Неверный формат ввода класса, попробуй-ка ещё разок")
