@@ -73,8 +73,10 @@ def start_message(message):
     result = cur.execute("""SELECT userID FROM info""").fetchall()
     reg_passed = False
     us_id = message.from_user.id
-    for i in result:
-        if i[0] == us_id:
+    our_bot.send_message(message.chat.id, us_id)
+    for i in result[0]:
+        our_bot.send_message(message.chat.id, f"Проверяемый ID {i}")
+        if i == us_id:
             reg_passed = True
     if not reg_passed:
         our_bot.send_message(message.chat.id, "Пока вы не зарегистрируетесь, возможности бота будут Вам недоступны, извините. Ваша регистрация обязательна.")
