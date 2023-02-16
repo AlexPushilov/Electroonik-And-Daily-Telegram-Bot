@@ -75,9 +75,9 @@ def start_message(message):
     us_id = message.from_user.id
     our_bot.send_message(message.chat.id, us_id)
     our_bot.send_message(message.chat.id, result)
-    for i in result[0]:
+    for i in result:
         our_bot.send_message(message.chat.id, f"Проверяемый ID {i}")
-        if i == us_id:
+        if i[0] == us_id:
             reg_passed = True
     if not reg_passed:
         our_bot.send_message(message.chat.id, "Пока вы не зарегистрируетесь, возможности бота будут Вам недоступны, извините. Ваша регистрация обязательна.")
