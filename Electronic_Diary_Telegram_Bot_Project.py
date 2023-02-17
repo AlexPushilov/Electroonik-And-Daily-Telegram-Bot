@@ -88,10 +88,10 @@ def start_message(message):
         our_bot.send_message(message.chat.id, "Вы уже зарегистрированы, выберите желаемое действие:", reply_markup=kb())
 
 
-@our_bot.message_handler(content_types=["text"])
+@our_bot.message_handler(content_types=["button"])
 def daily_answer(message):
-    cls_nbr = cur.execute(f"""SELECT number_of_class FROM info WHERE userID = {message.from_user.id}""").fetchone()[0]
     if message.text == "Текущий и следующий урок":
+        cls_nbr = cur.execute(f"""SELECT number_of_class FROM info WHERE userID = {message.from_user.id}""").fetchone()[0]
         dt = datetime.datetime.now(timezone("Europe/Moscow"))
         date = week_days[dt.weekday()]
         time2 = datetime.datetime.now(timezone("Europe/Moscow")).time()
@@ -150,6 +150,7 @@ def daily_answer(message):
                     our_bot.send_message(message.chat.id, f"Следующий урок - {next_lesson}")
                 k = j[1]
     elif message.text == "Расписание на день":
+        cls_nbr = cur.execute(f"""SELECT number_of_class FROM info WHERE userID = {message.from_user.id}""").fetchone()[0]
         dt = datetime.datetime.now(timezone("Europe/Moscow"))
         date = week_days[dt.weekday()]
         lsn1 = cur.execute(
