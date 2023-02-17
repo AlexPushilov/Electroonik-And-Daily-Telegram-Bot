@@ -218,8 +218,7 @@ def check_cls(message):
         if int(cls.split()[0]) > 0 and int(cls.split()[0]) < 12:
             if cls.split()[1] in rus_list:
                 clas_check_passed = True
-                a.append(cls)
-                cur.execute(f"""INSERT INTO info VALUES ({a[0]}, '{a[1]}', '{a[2]}', '{a[3]}')""")
+                cur.execute(f"""INSERT INTO info VALUES ({a[0]}, '{a[1]}', '{a[2]}', '{cls}')""")
                 con.commit()
                 a = []
                 start_message(message)
