@@ -88,7 +88,7 @@ def start_message(message):
         our_bot.send_message(message.chat.id, "Вы уже зарегистрированы, выберите желаемое действие:", reply_markup=kb())
 
 
-@our_bot.message_handler(content_types=["button"])
+@our_bot.message_handler(content_types=["text"])
 def daily_answer(message):
     if message.text == "Текущий и следующий урок":
         cls_nbr = cur.execute(f"""SELECT number_of_class FROM info WHERE userID = {message.from_user.id}""").fetchone()[0]
