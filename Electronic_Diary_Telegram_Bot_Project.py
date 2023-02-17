@@ -69,6 +69,7 @@ def kb():
 
 @our_bot.message_handler(commands=['start'], chat_types=['private'])
 def start_message(message):
+    a = []
     our_bot.send_message(message.chat.id, "Hi, my name is OLEG and I'm soo well-bread bot")
     result = cur.execute("""SELECT userID FROM info""").fetchall()
     reg_passed = False
