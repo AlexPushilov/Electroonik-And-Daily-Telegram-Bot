@@ -182,49 +182,49 @@ def check_suggestion_keyboard(callback):
     elif callback.data == "Yes":
         our_bot.send_message(callback.message.chat.id, "Отлично, я рад знакомству!")
         msg = our_bot.send_message(callback.message.chat.id, "Введи свою электронную почту, я буду очень рад с тобой работать!")
-        our_bot.register_next_step_handler(msg, email_answer, a)
+        our_bot.register_next_step_handler(msg, email_answer)
 
 
-def email_answer(message, lst):
+def email_answer(message):
     mail = message.text
     try:
         is_new_account = True
         validation = validate_email(mail, check_deliverability=is_new_account)
         mail = validation.email
         us_id = message.from_user.id
-        lst.append(us_id)
-        lst.append(mail)
+        a.append(us_id)
+        a.append(mail)
         our_bot.send_message(message.chat.id, "Отлично! Осталось совсем чуть-чуть и я смогу тебе помогать)")
         msg = our_bot.send_message(message.chat.id, "Теперь мне необходим пароль от твоего аккаунта")
-        our_bot.register_next_step_handler(msg, check_pswd, a)
+        our_bot.register_next_step_handler(msg, check_pswd)
     except EmailNotValidError:
         wts = our_bot.send_message(message.chat.id, "Неверный формат! Неправильно! Попробуй еще разок)")
-        our_bot.register_next_step_handler(wts, email_answer, a)
+        our_bot.register_next_step_handler(wts, email_answer)
 
 
-def check_pswd(message, lst):
+def check_pswd(message):
     password = message.text
-    lst.append(password)
+    A.append(password)
     our_bot.send_message(message.chat.id, "Наша команда не знает твоего пароля, так что пусть пока что он будет таким, если он не подойдет к электронному дневнику потом - мы сообщим")
     msg = our_bot.send_message(message.chat.id, "Теперь введи номер и букву своего класса в формате как в примере:10 А")
-    our_bot.register_next_step_handler(msg, check_cls, a)
+    our_bot.register_next_step_handler(msg, check_cls)
 
 
-def check_cls(message, lst):
+def check_cls(message):
     clas_check_passed = False
     cls = message.text
     if cls.split()[0].isdigit():
         if int(cls.split()[0]) > 0 and int(cls.split()[0]) < 12:
             if cls.split()[1] in rus_list:
                 clas_check_passed = True
-                lst.append(cls)
-                cur.execute(f"""INSERT INTO info VALUES ({lst[0]}, '{lst[1]}', '{lst[2]}', '{lst[3]}')""")
+                a.append(cls)
+                cur.execute(f"""INSERT INTO info VALUES ({a[0]}, '{a[1]}', '{a[2]}', '{a[3]}')""")
                 con.commit()
-                lst = []
+                a = []
                 start_message(message)
     if not clas_check_passed:
         ask_class = our_bot.send_message(message.chat.id, "Неверный формат ввода класса, попробуй-ка ещё разок")
-        our_bot.register_next_step_handler(ask_class, check_cls, a)
+        our_bot.register_next_step_handler(ask_class, check_cls)
 
 
 our_bot.infinity_polling()
