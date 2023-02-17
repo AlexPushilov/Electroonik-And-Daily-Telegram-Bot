@@ -180,6 +180,7 @@ def check_suggestion_keyboard(callback):
     if callback.data == "Not":
         our_bot.send_message(callback.message.chat.id, "В таком случае мы не можем ничем Вам помочь, простите. С уважением, команда разработчиков")
     elif callback.data == "Yes":
+        a = []
         our_bot.send_message(callback.message.chat.id, "Отлично, я рад знакомству!")
         msg = our_bot.send_message(callback.message.chat.id, "Введи свою электронную почту, я буду очень рад с тобой работать!")
         our_bot.register_next_step_handler(msg, email_answer, a)
