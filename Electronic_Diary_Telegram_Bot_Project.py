@@ -205,7 +205,7 @@ def email_answer(message):
 
 def check_pswd(message):
     password = message.text
-    A.append(password)
+    a.append(password)
     our_bot.send_message(message.chat.id, "Наша команда не знает твоего пароля, так что пусть пока что он будет таким, если он не подойдет к электронному дневнику потом - мы сообщим")
     msg = our_bot.send_message(message.chat.id, "Теперь введи номер и букву своего класса в формате как в примере:10 А")
     our_bot.register_next_step_handler(msg, check_cls)
